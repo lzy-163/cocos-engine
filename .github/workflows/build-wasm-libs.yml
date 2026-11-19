@@ -137,6 +137,7 @@ jobs:
           path: dist
 
       - name: Restore patches
+        if: always()
         run: |
           echo "-------------------------- Restore patches ---------------------------------"
           rm $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp
