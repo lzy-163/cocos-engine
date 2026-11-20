@@ -52,6 +52,7 @@ jobs:
       - name: Build Spine 3.8 WASM
         run: |
           cd native/cocos/editor-support/spine-wasm
+          sed -i 's/set(SPINE_VERSION "4.2")/set(SPINE_VERSION "3.8")/g' CMakeLists.txt
           mkdir build-wasm
           cd build-wasm
           emcmake cmake .. -GNinja
@@ -132,7 +133,7 @@ jobs:
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: spine-emscripten
           path: dist
 
