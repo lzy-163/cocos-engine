@@ -33,8 +33,8 @@ jobs:
         run: |
           if ! command -v ninja &> /dev/null; then
               echo "Ninja not found, installing..."
-              # sudo apt update
-              sudo apt install ninja-build
+              sudo apt update
+              sudo apt install -y ninja-build
           else
               echo "Ninja is already installed."
           fi
@@ -45,10 +45,10 @@ jobs:
           echo "--------------------------------- Save bind.cpp ---------------------------------"
           cp $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp.bak
           echo "--------------------------------- Apply embind bind.cpp patches ---------------------------------"
-          cp -f .github/workflows/emscripten-patches/embind/bind.cpp $EMSDK/upstream/emscripten/system/lib/embind/
+          cp -f .github/workflows/emscripten-patches/embind/bind.cpp $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp
           echo "--------------------------------- Apply patches DONE! ---------------------------------"
           cat $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp
-  
+
       - name: Build Spine 3.8 WASM
         run: |
           cd native/cocos/editor-support/spine-wasm
@@ -67,13 +67,13 @@ jobs:
           emcmake cmake .. -GNinja
           ninja
           ls -l
-          
+
       - name: Copy Spine 3.8 files to external directory
         run: |
           DIST_PATH="dist/3.8"
           rm -rf $DIST_PATH
           mkdir -p $DIST_PATH
-          cp native/cocos/editor-support/spine-wasm/build-wasm/spine.wasm ./$DIST_PATH
+          cp native/cocos/editor-support/spine-wasm/build-wasm/spine.wasm ./$DIST_PATH/
           cp native/cocos/editor-support/spine-wasm/build-wasm/spine.js ./$DIST_PATH/spine.wasm.js
           cp native/cocos/editor-support/spine-wasm/build-asmjs/spine.js.mem ./$DIST_PATH/
           cp native/cocos/editor-support/spine-wasm/build-asmjs/spine.js ./$DIST_PATH/spine.asm.js
@@ -110,13 +110,13 @@ jobs:
           emcmake cmake .. -GNinja
           ninja
           ls -l
-          
+
       - name: Copy Spine 4.2 files to external directory
         run: |
           DIST_PATH="dist/4.2"
           rm -rf $DIST_PATH
           mkdir -p $DIST_PATH
-          cp native/cocos/editor-support/spine-wasm/build-wasm/spine.wasm ./$DIST_PATH
+          cp native/cocos/editor-support/spine-wasm/build-wasm/spine.wasm ./$DIST_PATH/
           cp native/cocos/editor-support/spine-wasm/build-wasm/spine.js ./$DIST_PATH/spine.wasm.js
           cp native/cocos/editor-support/spine-wasm/build-asmjs/spine.js.mem ./$DIST_PATH/
           cp native/cocos/editor-support/spine-wasm/build-asmjs/spine.js ./$DIST_PATH/spine.asm.js
