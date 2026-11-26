@@ -21,8 +21,8 @@ jobs:
       - name: Setup emsdk
         uses: dumganhar/setup-emsdk@997d2cde2deabda085a11f98e86e842915b0e846
         with:
-          version: 3.1.41
-          actions-cache-folder: 'emsdk-cache-3.1.41'
+          version: 3.1.42
+          actions-cache-folder: 'emsdk-cache-3.1.42'
 
       - name: Verify
         run: |
@@ -48,7 +48,7 @@ jobs:
           cp -f .github/workflows/emscripten-patches/embind/bind.cpp $EMSDK/upstream/emscripten/system/lib/embind/
           echo "--------------------------------- Apply patches DONE! ---------------------------------"
           cat $EMSDK/upstream/emscripten/system/lib/embind/bind.cpp
-  
+
       - name: Build Spine 3.8 WASM
         run: |
           cd native/cocos/editor-support/spine-wasm
@@ -67,7 +67,7 @@ jobs:
           emcmake cmake .. -GNinja
           ninja
           ls -l
-          
+
       - name: Copy Spine 3.8 files to external directory
         run: |
           DIST_PATH="dist/3.8"
@@ -110,7 +110,7 @@ jobs:
           emcmake cmake .. -GNinja
           ninja
           ls -l
-          
+
       - name: Copy Spine 4.2 files to external directory
         run: |
           DIST_PATH="dist/4.2"
@@ -132,7 +132,7 @@ jobs:
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: spine-emscripten
           path: dist
 
